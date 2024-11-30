@@ -14,8 +14,6 @@ ChicGear là một website bán hàng trực tuyến cho các sản phẩm thờ
 
 ### Clone the repository
 
-Để bắt đầu, bạn cần sao chép (clone) repository về máy của mình:
-
 ```bash
 git clone https://github.com/username/chicgear-ecommerce.git
 cd chicgear-ecommerce
@@ -37,5 +35,5 @@ php artisan migrate
 Run the application: php artisan serve
 ```
 Truy cập vào http://localhost:8000 để xem website.
-<div style="border: 1px solid #ccc; padding: 10px; background-color: #f9f9f9;"> <h3>Contact</h3> <p>Email: quangnguyen15325@gmail.com</p> <h3>Contributors</h3> <p>Nguyễn Ngọc Quang: Project Lead, Developer</p> <p>ThS. Võ Ngọc Đạt: Project Advisor</p> </div> ```
+<div style="border: 1px solid #ccc; padding: 10px; background-color: #f9f9f9;"> <h3>Contact</h3> <p>Email: quangnguyen15325@gmail.com</p> <h3>Contributors</h3> <p>Nguyễn Ngọc Quang: Project Lead, Developer</p> <p>ThS. Võ Ngọc Đạt: Project Advisor</p> </div> 
 
