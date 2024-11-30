@@ -20,27 +20,22 @@ ChicGear là một website bán hàng trực tuyến cho các sản phẩm thờ
 git clone https://github.com/username/chicgear-ecommerce.git
 cd chicgear-ecommerce
 
-#### Install dependencies
+Install dependencies
 
-Cài đặt tất cả các phụ thuộc của dự án:
 composer install
 npm install
 
-##### Setup environment
+Setup environment
 cp .env.example .env
 
-###### Generate application key
+Generate application key
 php artisan key:generate
 
-####### Migrate database
+Migrate database
 php artisan migrate
 
-####### Run the application: php artisan serve
+Run the application: php artisan serve
+>
 Truy cập vào http://localhost:8000 để xem website.
->Contact
-Email: quangnguyen15325@gmail.com
-Contributors
-Nguyễn Ngọc Quang: Project Lead, Developer
-ThS. Võ Ngọc Đạt: Project Advisor
-
+<div style="border: 1px solid #ccc; padding: 10px; background-color: #f9f9f9;"> <h3>Contact</h3> <p>Email: quangnguyen15325@gmail.com</p> <h3>Contributors</h3> <p>Nguyễn Ngọc Quang: Project Lead, Developer</p> <p>ThS. Võ Ngọc Đạt: Project Advisor</p> </div> ```
 
