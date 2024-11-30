@@ -1,14 +1,14 @@
 # ChicGear Ecommerce Website
 
-ChicGear là một website bán hàng trực tuyến cho các sản phẩm thời trang và phụ kiện. Website hỗ trợ các chức năng như mua hàng, thanh toán, quản lý sản phẩm, và nhiều tính năng khác.
+ChicGear is an online sales website for fashion products and accessories. The website supports functions such as purchasing, payment, product management, and many other features.
 
 ![ChicGear Homepage](https://github.com/quangnguyen16325/chicgear-laravel11-ecommerce/blob/master/public/assets/imgs/logo/logo.png)
 
 ## Features
 
-- Bán hàng trực tuyến các sản phẩm thời trang, bao gồm quần áo, balo, giày dép, phụ kiện.
-- Quản lý sản phẩm, danh mục, tài khoản và đơn hàng dễ dàng.
-- Giao diện người dùng thân thiện, dễ sử dụng với thiết kế hiện đại.
+- Sell fashion products online, including clothes, backpacks, shoes, accessories.
+- Manage products, categories, accounts and orders easily.
+- User-friendly interface, easy to use with modern design.
 
 ## Installation
 
@@ -34,6 +34,6 @@ php artisan migrate
 
 Run the application: php artisan serve
 ```
-Truy cập vào http://localhost:8000 để xem website.
-<div style="border: 1px solid #ccc; padding: 10px; background-color: #f9f9f9;"> <h3>Contact</h3> <p>Email: quangnguyen15325@gmail.com</p> <h3>Contributors</h3> <p>Nguyễn Ngọc Quang: Project Lead, Developer</p> <p>ThS. Võ Ngọc Đạt: Project Advisor</p> </div> 
+Go to http://localhost:8000 to view the website.
+<div style="border: 1px solid #ccc; padding: 10px; background-color: #f9f9f9;"> <h3>Contact</h3> <p>Email: quangnguyen15325@gmail.com</p> <h3>Contributors</h3> <p>Nguyen Ngoc Quang: Project Lead, Developer</p> <p>ThS. Vo Ngoc Đat: Project Advisor</p> </div> 
 
