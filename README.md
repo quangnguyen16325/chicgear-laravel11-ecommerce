@@ -35,9 +35,9 @@ php artisan key:generate
 ####### Migrate database
 php artisan migrate
 
-AND Run the application: php artisan serve
+####### Run the application: php artisan serve
 Truy cập vào http://localhost:8000 để xem website.
-Contact
+>Contact
 Email: quangnguyen15325@gmail.com
 Contributors
 Nguyễn Ngọc Quang: Project Lead, Developer
