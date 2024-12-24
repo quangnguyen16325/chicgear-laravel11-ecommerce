@@ -35,5 +35,5 @@ php artisan migrate
 Run the application: php artisan serve
 ```
 Go to http://localhost:8000 to view the website.
-<div style="border: 1px solid #ccc; padding: 10px; background-color: #f9f9f9;"> <h3>Contact</h3> <p>Email: quangnguyen15325@gmail.com</p> <h3>Contributors</h3> <p>Nguyen Ngoc Quang: Project Lead, Developer</p> <p>ThS. Vo Ngoc Đat: Project Advisor</p> </div> 
+<div style="border: 1px solid #ccc; padding: 10px; background-color: #f9f9f9;"> <h3>Contact</h3> <p>Email: quangnguyen16325@gmail.com</p> <h3>Contributors</h3> <p>Nguyen Ngoc Quang: Project Lead, Developer</p> <p>ThS. Vo Ngoc Đat: Project Advisor</p> </div> 
 
