@@ -39,7 +39,7 @@
                             <div class="card-body">
                                 <h5 class="card-title">Mã giảm giá</h5>
                                 <p class="card-text">Bạn có 0 mã giảm giá</p>
-                                <a href="#" class="small mt-3 hover-link">Xem chi tiết</a>
+                                <a href="{{ route('user.discount_codes') }}" class="small mt-3 hover-link">Xem chi tiết</a>
                             </div>
                         </div>
                     </div>

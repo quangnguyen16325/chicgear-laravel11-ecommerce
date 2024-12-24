@@ -125,7 +125,7 @@
                                                     <li><a href="{{ route('admin.products') }}">Sản phẩm</a></li>
                                                     <li><a href="{{ route('admin.categories') }}">Danh mục</a></li>
                                                     <li><a href="{{ route('admin.home.slider') }}">Slider</a></li>
-                                                    <li><a href="#">Mã giảm giá</a></li>
+                                                    <li><a href="{{ route('admin.discount_codes') }}">Mã giảm giá</a></li>
                                                     <li><a href="{{ route('admin.order') }}">Đơn hàng</a></li>
                                                     <li><a href="{{ route('admin.users') }}">Người dùng</a></li>                                            
                                                 </ul>

@@ -37,7 +37,7 @@
                 </div>
                 
                 <!-- Row with 3 columns -->
-                <div class="row mt-4">
+                <div class="row mt-1"> 
                     <div class="col-md-4">
                         <div class="hero-card box-shadow-outer-6 wow fadeIn animated mb-30 hover-up d-flex text-center">
                                 <div class="card-body">
@@ -65,16 +65,47 @@
                                 </div>
                         </div>
                     </div>
-                    <div class="col-md-12">
+                    {{-- <div class="col-md-12">
+                        <div class="col-md-6">
+                            <div class="hero-card box-shadow-outer-6 wow fadeIn animated mb-30 hover-up d-flex text-center">
+                                <div class="card-body">
+                                    <h5 class="card-title">Thông báo</h5>
+                                    <p class="card-text">Xem thông báo mới nhất</p>
+                                    <a href="#" class="small mt-3 hover-link">Xem chi tiết</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="hero-card box-shadow-outer-6 wow fadeIn animated mb-30 hover-up d-flex text-center">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Mã giảm giá</h5>
+                                        <p class="card-text">Quản lý 0 mã giảm giá</p>
+                                        <a href="#" class="small mt-3 hover-link">Xem chi tiết</a>
+                                    </div>
+                            </div>
+                        </div>
+                    </div> --}}
+                </div>    
+                <div class="row mt-1">
+                    <div class="col-md-6">
+                        <div class="hero-card box-shadow-outer-6 wow fadeIn animated mb-30 hover-up d-flex text-center">
+                            <div class="card-body">
+                                <h5 class="card-title">Thông báo</h5>
+                                <p class="card-text">Xem thông báo mới nhất</p>
+                                <a href="#" class="small mt-3 hover-link">Xem chi tiết</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
                         <div class="hero-card box-shadow-outer-6 wow fadeIn animated mb-30 hover-up d-flex text-center">
                                 <div class="card-body">
                                     <h5 class="card-title">Mã giảm giá</h5>
-                                    <p class="card-text">Quản lý 0 mã giảm giá</p>
-                                    <a href="#" class="small mt-3 hover-link">Xem chi tiết</a>
+                                    <p class="card-text">Quản lý {{ $discountCount ?? 0 }} mã giảm giá</p>
+                                    <a href="{{ route('admin.discount_codes') }}" class="small mt-3 hover-link">Xem chi tiết</a>
                                 </div>
                         </div>
                     </div>
-                </div>                
+                </div>            
                 <!-- Revenue Chart -->
                 <div class="card mt-4">
                     <div class="card-body">
@@ -84,10 +115,53 @@
                 </div>
             </div>            
         </div>
-    </div>    
+    </div> 
+
+    {{-- <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        document.addEventListener('livewire:load', () => {
+            const ctx = document.getElementById('revenueChart').getContext('2d');
+            const revenueChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: @json($labels),
+                    datasets: [{
+                        label: 'Doanh thu cửa hàng',
+                        data: @json($data), 
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        borderWidth: 2,
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        },
+                        title: {
+                            display: true,
+                            text: 'Doanh thu hàng tháng của cửa hàng'
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                callback: function(value) {
+                                    return value.toLocaleString() + '₫'; 
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script> --}}
+
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+{{-- <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
     const ctx = document.getElementById('revenueChart').getContext('2d');
     const revenueChart = new Chart(ctx, {
@@ -125,5 +199,44 @@
             }
         }
     });
-</script>
+</script> --}}
 
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        const ctx = document.getElementById('revenueChart').getContext('2d');
+        const revenueChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: @json($labels),
+                datasets: [{
+                    label: 'Doanh thu cửa hàng',
+                    data: @json($data), 
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderWidth: 2,
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    title: {
+                        display: true,
+                        text: 'Doanh thu hàng tháng của ChicGear Store'
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            callback: function(value) {
+                                return value.toLocaleString() + '₫'; 
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    </script>

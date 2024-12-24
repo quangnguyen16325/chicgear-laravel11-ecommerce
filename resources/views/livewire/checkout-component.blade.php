@@ -38,15 +38,9 @@
         </div>
         <section class="mt-50 mb-50">
             {{-- <form method="POST" action="{{ route('order.store') }}" id="orderForm"> --}}
-            <form wire:submit.prevent="storeOrder" id="orderForm">
-                {{-- @csrf --}}
+            {{-- <form wire:submit.prevent="storeOrder" id="orderForm"> --}}
                 <div class="container">
-                    <div class="row">
-                        @if(Session::has('error_message'))
-                            <div class="alert alert-danger">
-                                <strong>{{ Session::get('error_message') }}</strong>
-                            </div>
-                        @endif
+                    <div class="row mb-4">
                         <div class="col-lg-6 mb-sm-15">
                             <div class="toggle_info">
                                 <span>
@@ -66,9 +60,90 @@
                     </div>
                     <div class="row">
                         <div class="col-12">
-                            <div class="divider mt-50 mb-50"></div>
+                            <div class="divider mt-5 mb-20"></div>
                         </div>
                     </div>
+                    @if (session()->has('success'))
+                        <div class="alert alert-success">
+                            {{ session('success') }}
+                        </div>
+                    @endif
+                
+                    @if (session()->has('error'))
+                        <div class="alert alert-danger">
+                            {{ session('error') }}
+                        </div>
+                    @endif
+                
+                    {{-- <form wire:submit.prevent="applyDiscount">
+                        <div class="mb-2 d-flex">
+                            <div class="flex-grow-1">
+                                <label for="discountCode" class="block text-gray-700">Mã giảm giá</label> 
+                                <input type="text" id="discountCode" wire:model="discountCode" class="form-input mt-1 block w-full" placeholder="Nhập mã giảm giá">
+                                @error('discountCode') <span class="text-red-500">{{ $message }}</span> @enderror
+                            </div>
+                            <div>
+                                <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded mb-4 ml-2 mt-7">
+                                    Áp dụng
+                                </button>
+                            </div>
+                        </div>
+                    </form> --}}
+                    <div class="mb-30 mt-5">
+                        <div class="heading_s1 mb-3">
+                            <h4>Áp dụng mã giảm giá</h4>
+                        </div>
+                        <div class="total-amount">
+                            <div class="left">
+                                <div class="coupon">
+                                    <form wire:submit.prevent="applyDiscount">
+                                        <div class="form-row row justify-content-center">
+                                            <div class="form-group col-lg-6">
+                                                <input type="text" id="discountCode" wire:model="discountCode" class="font-medium" name="Coupon" placeholder="Điền mã giảm giá của bạn">
+                                                @error('discountCode') <span class="text-red-500">{{ $message }}</span> @enderror
+                                            </div>
+                                            <div class="form-group col-lg-6 d-flex">
+                                                <button type="submit" class="btn btn-sm mr-2 me-2"><i class="fi-rs-label mr-10"></i>Áp dụng</button>
+                                                <button type="button" wire:click="removeDiscount" class="btn btn-sm btn-danger"><i class="fi-rs-trash mr-10"></i>Hủy áp dụng</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>  
+                <form wire:submit.prevent="processPayment" id="orderForm">
+                {{-- @csrf --}}
+                <div class="container">
+                    <div class="row">
+                        @if(Session::has('error_message'))
+                            <div class="alert alert-danger">
+                                <strong>{{ Session::get('error_message') }}</strong>
+                            </div>
+                        @endif
+                        {{-- <div class="col-lg-6 mb-sm-15">
+                            <div class="toggle_info">
+                                <span>
+                                    <i class="fi-rs-user mr-2"></i>
+                                    <span class="text-muted">Đã có tài khoản?</span>
+                                    <a href="{{ route('login') }}" class="text-primary" style="text-decoration: none;">Nhấn vào đây để đăng nhập</a>
+                                </span>
+                            </div>
+                        </div>                    
+                        <div class="col-lg-6">
+                            <div class="toggle_info">
+                                <span><i class="fi-rs-user mr-10"></i><span class="text-muted">Chưa có tài khoản?</span> 
+                                    <a href="{{ route('register') }}" class="collapsed" aria-expanded="false">Nhấn vào đây để đăng ký</a>
+                                </span>
+                            </div>
+                        </div> --}}
+                    </div>
+                    {{-- <div class="row">
+                        <div class="col-12">
+                            <div class="divider mt-50 mb-50"></div>
+                        </div>
+                    </div> --}}
                     <div class="row">
                         <div class="col-md-6">
                             <div class="mb-25">
@@ -172,12 +247,63 @@
                                                 <td colspan="2"><em>Miễn phí vận chuyển</em></td>
                                             </tr>
                                             <tr>
+                                                <th>Mã giảm giá</th>
+                                                <td colspan="2">
+                                                    {{-- {{ dd(session()->all()); }} --}}
+                                                    @if(session()->has('discount_amount'))
+                                                        <em>{{ number_format(session('discount_amount'), 0, '', '.') }}đ</em>
+                                                    @else
+                                                        <em>Chưa áp dụng</em>
+                                                    @endif
+                                                </td>
+                                            </tr>
+                                            <tr>
                                                 <th>Tổng cộng</th>
-                                                <td colspan="2" class="product-subtotal"><span class="font-xl text-brand fw-900">{{ number_format((float) str_replace(',', '', Cart::total())) }}đ</span></td>
+                                                {{-- <td colspan="2" class="product-subtotal"><span class="font-xl text-brand fw-900">{{ number_format((float) str_replace(',', '', Cart::total())) }}đ</span></td> --}}
+                                                <td colspan="2" class="product-subtotal">
+                                                    <span class="font-xl text-brand fw-900">
+                                                        @if(session()->has('discount_amount'))
+                                                            {{ number_format((float) str_replace(',', '', Cart::total()) - session('discount_amount'), 0, '', '.') }}đ
+                                                        @else
+                                                            {{ number_format((float) str_replace(',', '', Cart::total()), 0, '', '.') }}đ
+                                                        @endif
+                                                    </span>
+                                                </td>
                                             </tr>
                                         </tbody>
                                     </table>
                                 </div>
+                                {{-- <div class="form-group">
+                                    <label for="discount_code">Mã giảm giá</label>
+                                    <input type="text" name="discount_code" wire:model="discountCode" id="discount_code" placeholder="Nhập mã giảm giá" class="form-control">
+                                    @error('discountCode') <span class="text-danger">{{ $message }}</span> @enderror
+                                </div> --}}
+
+                                {{-- <div>
+                                    @if (session()->has('success'))
+                                        <div class="alert alert-success">
+                                            {{ session('success') }}
+                                        </div>
+                                    @endif
+                                
+                                    @if (session()->has('error'))
+                                        <div class="alert alert-danger">
+                                            {{ session('error') }}
+                                        </div>
+                                    @endif
+                                
+                                    <form wire:submit.prevent="applyDiscount">
+                                        <div class="mb-4">
+                                            <label for="discountCode" class="block text-gray-700">Mã giảm giá</label>
+                                            <input type="text" id="discountCode" wire:model="discountCode" class="form-input mt-1 block w-full" placeholder="Nhập mã giảm giá">
+                                            @error('discountCode') <span class="text-red-500">{{ $message }}</span> @enderror
+                                        </div>
+                                
+                                        <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded">
+                                            Áp dụng
+                                        </button>
+                                    </form>
+                                </div>                                --}}
                                 <div class="bt-1 border-color-1 mt-30 mb-30"></div>
                                 <div class="payment_method">
                                     <div class="mb-25">
@@ -195,6 +321,10 @@
                                         <div class="custome-radio">
                                             <input class="form-check-input" type="radio" name="payment_option" id="exampleRadios5" value="momo" wire:model="paymentOption">
                                             <label class="form-check-label" for="exampleRadios5">Thanh toán qua Momo</label>
+                                        </div>
+                                        <div class="custome-radio">
+                                            <input class="form-check-input" type="radio" name="payment_option" id="exampleRadios6" value="vnpay" wire:model="paymentOption">
+                                            <label class="form-check-label" for="exampleRadios6">Thanh toán qua VNPAY</label>
                                         </div>
                                     </div>
                                 </div>

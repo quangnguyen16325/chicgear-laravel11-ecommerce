@@ -5,6 +5,7 @@ namespace App\Livewire\Admin;
 use App\Models\Order;
 use App\Models\OrderHistory;
 use App\Models\OrderItem;
+use App\Models\Product;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -57,7 +58,21 @@ class AdminOrderComponent extends Component
                 $orderHistory->save(); 
             }
 
-            OrderItem::where('order_id', $orderId)->delete();
+            // OrderItem::where('order_id', $orderId)->delete();
+
+            $orderItems = OrderItem::where('order_id', $orderId)->get();
+
+            foreach ($orderItems as $item) {
+
+                $product = Product::find($item->product_id);
+    
+                if ($product) {
+                    $product->quantity += $item->quantity;
+                    $product->save();
+                }
+    
+                $item->delete();
+            }
 
             $order->delete();
 

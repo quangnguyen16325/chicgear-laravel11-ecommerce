@@ -56,6 +56,6 @@
     </div>
 
     {{-- <div class="mt-4"> --}}
-        {{ $orders->links() }} <!-- Hiển thị phân trang -->
+        {{ $orders->links() }} 
     {{-- </div> --}}
 </div>

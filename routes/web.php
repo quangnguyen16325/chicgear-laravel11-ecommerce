@@ -4,11 +4,16 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProfileController;
 use App\Livewire\AboutComponent;
 use App\Livewire\Admin\AdminAddCategoryComponent;
+use App\Livewire\Admin\AdminAddDiscountCodesComponent;
 use App\Livewire\Admin\AdminAddHomeSlideComponent;
 use App\Livewire\Admin\AdminAddProductComponent;
 use App\Livewire\Admin\AdminCategoriesComponent;
 use App\Livewire\Admin\AdminDashboardComponent;
+use App\Livewire\Admin\AdminDiscountCodesComponent;
+use App\Livewire\Admin\AdminDiscountCodesDetailsComponent;
+use App\Livewire\Admin\AdminDistributeDiscountCodeComponent;
 use App\Livewire\Admin\AdminEditCategoryComponent;
+use App\Livewire\Admin\AdminEditDiscountCodesComponent;
 use App\Livewire\Admin\AdminEditHomeSlideComponent;
 use App\Livewire\Admin\AdminEditProductComponent;
 use App\Livewire\Admin\AdminEditUserComponent;
@@ -31,6 +36,7 @@ use App\Livewire\HomeComponent;
 use App\Livewire\ThankyouComponent;
 use App\Livewire\User\UserAddAddressComponent;
 use App\Livewire\User\UserDashboardComponent;
+use App\Livewire\User\UserDiscountCodesComponent;
 use App\Livewire\User\UserEditAddressComponent;
 use App\Livewire\User\UserEditProfileComponent;
 use App\Livewire\User\UserOrderComponent;
@@ -40,6 +46,7 @@ use App\Livewire\User\UserOrderHistoryDetailsComponent;
 use App\Livewire\User\UserProfileComponent;
 use App\Livewire\WishlistComponent;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -58,6 +65,25 @@ Route::get('/about',AboutComponent::class)->name('about');
 Route::get('/blog', BlogComponent::class)->name('blog');
 Route::get('/contact', ContactComponent::class)->name('contact');
 Route::get('/thankyou', ThankyouComponent::class)->name('thankyou');
+// Route::get('/vnpay-return', function (Request $request) {
+//     if ($request->vnp_ResponseCode == '00') {
+//         session()->flash('success_message', 'Thanh toán qua VNPAY thành công!');
+//     } else {
+//         session()->flash('error', 'Thanh toán qua VNPAY thất bại!');
+//     }
+//     return redirect()->route('thankyou');
+// })->name('vnpay.return');
+// Route::get('/momo-return', function (Request $request) {
+//     if ($request->resultCode == '0') {
+//         session()->flash('success_message', 'Thanh toán qua MoMo thành công!');
+//     } else {
+//         session()->flash('error', 'Thanh toán qua MoMo thất bại!');
+//     }
+
+//     return redirect()->route('thankyou');
+// })->name('momo.return');
+Route::get('/momo-return', [CheckoutComponent::class, 'momoReturn'])->name('momo.return');
+Route::get('/vnpay-return', [CheckoutComponent::class, 'vnpayReturn'])->name('vnpay.return');
     
 Route::post('/order',[OrderController::class, 'store'])->name('order.store');
 
@@ -75,7 +101,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/user/order/details/{order_id}', UserOrderDetailsComponent::class)->name('user.order.details');
     Route::get('/user/order/histories', UserOrderHistoryComponent::class)->name('user.order.histories');
     Route::get('/order/history/details/{orderId}', UserOrderHistoryDetailsComponent::class)->name('user.order.history.details');
-
+    Route::get('/user/discount-codes', UserDiscountCodesComponent::class)->name('user.discount_codes');
 });
 
 Route::middleware(['auth', 'authadmin'])->group(function () {
@@ -95,6 +121,12 @@ Route::middleware(['auth', 'authadmin'])->group(function () {
     Route::get('/admin/order', AdminOrderComponent::class)->name('admin.order');
     Route::get('/admin/orders/details/{order_id}', AdminOrderDetailsComponent::class)->name('admin.order.details');
     Route::get('/admin/order/history', AdminOrderHistoryComponent::class)->name('admin.order.history');
+    Route::get('/admin/discount-codes', AdminDiscountCodesComponent::class)->name('admin.discount_codes');
+    Route::get('/admin/discount-codes/add', AdminAddDiscountCodesComponent::class)->name('admin.discount_codes.add');
+    Route::get('/admin/discount-codes/edit/{discount_id}', AdminEditDiscountCodesComponent::class)->name('admin.discount_code.edit');
+    Route::get('/admin/distribute-discount_code', AdminDistributeDiscountCodeComponent::class)->name('admin.distribute_discount_code');
+    Route::get('/admin/discount-codes/{discount_id}/details', AdminDiscountCodesDetailsComponent::class)->name('admin.discount_code.details');
+
 
 });
 

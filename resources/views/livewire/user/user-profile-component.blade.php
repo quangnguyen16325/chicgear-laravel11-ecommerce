@@ -20,8 +20,12 @@
                     <div class="card">
                         <div class="card-header text-center">
                             <h4>Thông tin cá nhân</h4>
+                            <p class="form-label">ID: <span>{{ $user->id }}</span></p>
                         </div>
                         <div class="card-body">
+                            {{-- <div class="mb-3">
+                                <p class="form-label">ID: <span>{{ $user->id }}</span></p>
+                            </div> --}}
                             <div class="mb-3">
                                 <label class="form-label">Họ và tên:</label>
                                 <p>{{ $user->name }}</p>

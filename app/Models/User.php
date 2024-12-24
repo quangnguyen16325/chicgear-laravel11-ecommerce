@@ -55,4 +55,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Order::class);
     }
+
+    public function discountCodes()
+    {
+        return $this->belongsToMany(DiscountCode::class, 'user_discount')->withPivot('used')->withTimestamps();
+    }
 }

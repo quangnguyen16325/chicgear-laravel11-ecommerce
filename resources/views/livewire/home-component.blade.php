@@ -1,4 +1,25 @@
 <div>
+    <style>
+        .truncate-text {
+            white-space: nowrap; 
+            overflow: hidden;   
+            text-overflow: ellipsis; 
+            max-width: 100%;    
+        }
+        
+        .truncate-two-lines {
+            display: -webkit-box;        
+            -webkit-box-orient: vertical; 
+            overflow: hidden;            
+            text-overflow: ellipsis;    
+            -webkit-line-clamp: 2;       
+            line-height: 1.5em;        
+            max-height: 3em;            
+        }
+
+
+    </style>
+
     <main class="main">
         <section class="home-slider position-relative pt-50">
             <div class="hero-slider-1 dot-style-1 dot-style-1-position-1">
@@ -111,9 +132,11 @@
                                         </div>
                                         <div class="product-content-wrap">
                                             <div class="product-category">
-                                                <a href="{{ route('shop') }}">Quấn áo</a>
+                                                <a href="{{ route('shop') }}">ChicGear</a>
                                             </div>
-                                            <h2><a href="product-details.html">{{ $fproduct->name }}</a></h2>
+                                            <h2 class="truncate-text">
+                                                <a href="{{ route('product.details',['slug'=>$fproduct->slug])}}" title="{{ $fproduct->name }}">{{ $fproduct->name }}</a>
+                                            </h2>
                                             <div class="rating-result" title="90%">
                                                 <span>
                                                     <span>90%</span>
@@ -162,9 +185,11 @@
                                         </div>
                                         <div class="product-content-wrap">
                                             <div class="product-category">
-                                                <a href="{{ route('shop') }}">Quấn áo</a>
+                                                <a href="{{ route('shop') }}">ChicGear</a>
                                             </div>
-                                            <h2><a href="product-details.html">{{ $topproduct->name }}</a></h2>
+                                                <h2 class="truncate-text">
+                                                    <a href="{{ route('product.details',['slug'=>$topproduct->slug])}}" title="{{ $topproduct->name }}">{{ $topproduct->name }}</a>
+                                                </h2>
                                             <div class="rating-result" title="90%">
                                                 <span>
                                                     <span>90%</span>
@@ -213,9 +238,11 @@
                                         </div>
                                         <div class="product-content-wrap">
                                             <div class="product-category">
-                                                <a href="{{ route('shop') }}">Quấn áo</a>
+                                                <a href="{{ route('shop') }}">ChicGear</a>
                                             </div>
-                                            <h2><a href="product-details.html">{{ $lproduct->name }}</a></h2>
+                                            <h2 class="truncate-text">
+                                                <a href="{{ route('product.details',['slug'=>$lproduct->slug])}}" title="{{ $lproduct->name }}">{{ $lproduct->name }}</a>
+                                            </h2>
                                             <div class="rating-result" title="90%">
                                                 <span>
                                                     <span>90%</span>
@@ -337,7 +364,9 @@
                                     </div>
                                 </div>
                                 <div class="product-content-wrap">
-                                    <h2><a href="product-details.html">{{ $lproduct->name }}</a></h2>
+                                    <h2 class="truncate-two-lines">
+                                        <a href="{{ route('product.details',['slug'=>$lproduct->slug])}}" title="{{ $lproduct->name }}">{{ $lproduct->name }}</a>
+                                    </h2>
                                     <div class="rating-result" title="90%">
                                         <span>
                                         </span>
